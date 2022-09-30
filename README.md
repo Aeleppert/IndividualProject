@@ -1,4 +1,4 @@
-# IndividualProject
+# Individual Project 2022
 
 Alice Leppert's Individual Project for Computer Programming 2
 2022-2023
