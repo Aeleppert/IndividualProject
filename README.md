@@ -11,6 +11,3 @@ Devil's Handholding Card Game will be a simplified and easier version of the car
 Documentation Here (Now Outdated):  
 ![Placeholder Image](https://github.com/Aeleppert/IndividualProject/blob/main/images/Solitaire%20Class%20diagram%20(1).jpg)
 ![Placeholder Image](https://github.com/Aeleppert/IndividualProject/blob/main/images/SolitareFlow1.drawio.png)
-  
-Data (not final):  
-![Placeholder Image](https://github.com/Aeleppert/IndividualProject/blob/main/images/images.png)
