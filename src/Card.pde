@@ -19,10 +19,11 @@ class Card {
   
   void display() {
     //not yet finished for highlight staying there.
-    if (x1<mouseX && mouseX<x2 && mouseY>y1 && mouseY<y2 && mousePressed) { 
+    if (x1<mouseX && mouseX<x2 && mouseY>y1 && mouseY<y2 && mousePressed || click == true) { 
       //highlight card
       fill(240,240,0);
       rect(x1-2,y1-2,x2-x1+4,y2-y1+4,5);
+      click = true;
     } 
     if(red == true) {
       fill(245, 50,0);
@@ -36,6 +37,10 @@ class Card {
   }
   
   // movement method(s)
-  
+  void move() {
+    //if (click == true) {
+      
+  }
+ 
   // *enhanced for loop* to randomize the *stack*
 }
