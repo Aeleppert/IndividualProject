@@ -5,6 +5,7 @@ boolean menu = true;
 int [][] place = {{150,100,190,160},{220,100,260,160},{290,100,330,160},{360,100,400,160},
       {150,220,190,280},{220,220,260,280},{290,220,330,280},{360,220,400,280},
       {150,340,190,400},{220,340,260,400},{290,340,330,400},{360,340,400,400}};
+ArrayList<ArrayList<Card>> grid = new ArrayList<ArrayList<Card>>();
 Card[] arr = {
   new Card(0,13,false, true, 100,200,140,260,"K"),
   new Card(0,12,false, true, 220,200,260,260,"Q"),
@@ -88,12 +89,12 @@ void mouseClicked() {
     List<Card> list = Arrays.asList(arr);
     Collections.shuffle(list);
     list.toArray(arr);
-    for (int i = 0; i<arr.length; i++){
-      arr[i].x1 = 30;
-      arr[i].y1 = 220;
-      arr[i].x2 = 70;
-      arr[i].y2 = 280;
-      deck.push(arr[i]);
+    for (Card i: arr){
+      i.x1 = 30;
+      i.y1 = 220;
+      i.x2 = 70;
+      i.y2 = 280;
+      deck.push(i);
     }
     for (int i = 0; i<12; i++){
       Card setup = deck.pop();
@@ -101,8 +102,10 @@ void mouseClicked() {
       setup.y1 = place[i][1];
       setup.x2 = place[i][2];
       setup.y2 = place[i][3];
+      grid.add(new ArrayList<Card>());
+      grid.get(i).add(0,setup);
     }
-    System.out.println(deck.size());
+    System.out.println(grid);
   } else if(!menu && mouseX<690 && mouseX>610 && mouseY<490 && mouseY>470) {
     menu = true;
     deck.clear();
