@@ -2,6 +2,8 @@ import java.io.*;
 import java.util.*;
 Stack<Card> deck = new Stack<Card>();
 boolean menu = true;
+Card top;
+ArrayList<Card> pull = new ArrayList<Card>();
 int [][] place = {{150,100,190,160},{220,100,260,160},{290,100,330,160},{360,100,400,160},
       {150,220,190,280},{220,220,260,280},{290,220,330,280},{360,220,400,280},
       {150,340,190,400},{220,340,260,400},{290,340,330,400},{360,340,400,400}};
@@ -105,18 +107,26 @@ void mouseClicked() {
       grid.add(new ArrayList<Card>());
       grid.get(i).add(0,setup);
     }
-    System.out.println(grid);
+    System.out.println(deck);
   } else if(!menu && mouseX<690 && mouseX>610 && mouseY<490 && mouseY>470) {
     menu = true;
     deck.clear();
     grid.clear();
-  } else if(!menu && mouseX<30 && mouseX>70 && mouseY<280 && mouseY>220) {
-    
-  } for (Card c: arr) {
-    if (c.click) {
-      
+  } else if(!menu && mouseX>30 && mouseX<70 && mouseY<280 && mouseY>220) {
+    if (top != null) {
+       top.display = false;
     }
+    top = deck.pop();
+    pull.add(top);
+    top.y1 = 100;
+    top.y2 = 160;
+    top.x1 = 30;
+    top.x2 = 70;
+    top.click = false;
+    for (Card c: arr) {
+    c.click = false;
   }
+  } System.out.println(pull);
 }
 
 void gameplay() {
