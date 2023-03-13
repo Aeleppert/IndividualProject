@@ -109,6 +109,13 @@ void mouseClicked() {
   } else if(!menu && mouseX<690 && mouseX>610 && mouseY<490 && mouseY>470) {
     menu = true;
     deck.clear();
+    grid.clear();
+  } else if(!menu && mouseX<30 && mouseX>70 && mouseY<280 && mouseY>220) {
+    
+  } for (Card c: arr) {
+    if (c.click) {
+      
+    }
   }
 }
 
