@@ -70,6 +70,9 @@ void setup(){
 
 void draw(){
   if (menu) {
+    for (Card i: arr){
+      i.click = false;
+    }
     background(0);
     textSize(40);
     fill(255);
@@ -91,14 +94,16 @@ void draw(){
     textSize(12);
     textAlign(LEFT);
     text("Instructions:", 455, 45);
-    text("1. There are 12 stacks on the \n board and 1 deck to take \n cards from.", 455,60);
-    text("2. Cards can be moved from \n the deck  to a stack and from \n one stack to another.",455,115);
-    text("3. The aim of the game is to \n move the  cards into a \n specific order:",455,170);
-    text("\t i. In row 1, the cards in \n  all stacks have to be \n ordered as (2,5,8,J).",455,225);
-    text("\t ii. In row 2, the cards in \n all stacks have to be \n ordered as (3,6,9,Q).",455,280);
-    text("\t iii. In row 3, the cards in \n all stacks have to be \n ordered as (4,7,10,K).",455,335);
-    text("\t iv. Try to have all cards \n in a stack be of the same suit.",455,390);
-    text("4. More points will be \n rewarded for a more perfect \n grid.", 455,425);
+    text("1. There are 12 stacks on the board \n and 1 deck to take cards from.", 455,60);
+    text("2. Cards can be moved from the \n deck  to a stack and from one \n stack to another.",455,95);
+    text("3. The aim of the game is to move \n the  cards into a specific order:",455,150);
+    text("\t i. In row 1, the cards in all stacks \n have to be ordered as (2,5,8,J).",460,185);
+    text("\t ii. In row 2, the cards in all stacks \n have to be ordered as (3,6,9,Q).",460,220);
+    text("\t iii. In row 3, the cards in all stacks \n have to be ordered as (4,7,10,K).",460,255);
+    text("\t iv. Try to have all cards in a stack \n be of the same suit.",460,290);
+    text("4. More points will be rewarded for \n a more perfect \n grid.", 455,330);
+    text("5. Click the card you want to move \n first and then click the destination.", 455,390);
+    text("6. Cards can't be removed from the \n grid once added.",455, 430);
     for (Card i: arr){
       i.display();
     }
@@ -110,7 +115,7 @@ void draw(){
 }
 
 void mouseClicked() {
-  if (menu && mouseX>270 && mouseX>330 && mouseY<310 && mouseY>290) {
+  if (menu && mouseX>260 && mouseX>330 && mouseY<310 && mouseY>290) {
     menu = false;
     List<Card> list = Arrays.asList(arr);
     Collections.shuffle(list);
