@@ -103,6 +103,10 @@ void draw(){
       i.display();
     }
   }
+  if(score() == 1800){
+    textSize(20);
+    text("YOU WIN!", 220, 250);
+  }
 }
 
 void mouseClicked() {
@@ -254,19 +258,22 @@ int score(){
   int points = 0;
   String [][] face = {{"2","6","10"},{"2","6","10"},{"2","6","10"},{"3","7","J"},{"3","7","J"},{"3","7","J"},
       {"4","8","Q"},{"4","8","Q"},{"4","8","Q"},{"5","9","K"},{"5","9","K"},{"5","9","K"}};
-  int[] st = {0,0,0,1,1,1,2,2,2,3,3,3};
   for(ArrayList<Card> i: grid){
     for(Card j:i){
       points += j.pt;
       if (grid.get(grid.indexOf(i)).indexOf(j)<3){
       if (j.face.equals(face[grid.indexOf(i)][grid.get(grid.indexOf(i)).indexOf(j)])){
         points+= 10;
-      }}
-      if(j.suit ==st[grid.indexOf(i)]){
-        points+=20;
       }
-      
+    }
+    } 
+    if(grid.get(grid.indexOf(i)).size() == 4){
+    if(grid.get(grid.indexOf(i)).get(0) == grid.get(grid.indexOf(i)).get(1) && grid.get(grid.indexOf(i)).get(0) == grid.get(grid.indexOf(i)).get(2) 
+          && grid.get(grid.indexOf(i)).get(0) == grid.get(grid.indexOf(i)).get(3)){
+      points+= 80;
+    }
     }
   }
+  
   return points;
 }
