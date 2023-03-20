@@ -17,5 +17,5 @@ Executables available for
 
   
 Documentation Here (Now Outdated):  
-![Placeholder Image](https://github.com/Aeleppert/IndividualProject/blob/main/images/Solitaire%20Class%20diagram%20(1).jpg)
-![Placeholder Image](https://github.com/Aeleppert/IndividualProject/blob/main/images/SolitareFlow1.drawio.png)
+![Placeholder Image](https://github.com/Aeleppert/IndividualProject/blob/main/images/Updated%20flowchart.drawio.png)
+![Placeholder Image](https://github.com/Aeleppert/IndividualProject/blob/main/images/Updated%20class.drawio.png)
