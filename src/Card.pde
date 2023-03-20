@@ -5,6 +5,7 @@ class Card {
   int x1, y1, x2, y2;
   boolean click = false;
   
+  // some of these var arent used
   Card (int s, int p, boolean r, boolean st,int tempX1, int tempY1, int tempX2, int tempY2, String f, boolean d, boolean c) {
     suit = s;
     pt = p;
@@ -20,11 +21,14 @@ class Card {
   }
   
   void display() {
+    // so we can turn off display
     if (dis) {
     
+    // when card is clicked
     if (click == true) {
       fill(240,240,0);
       rect(x1-2,y1-2,x2-x1+4,y2-y1+4,5);
+      // red vs white
       if(red == true) {
       fill(231, 50, 19);
     } else {
@@ -34,6 +38,7 @@ class Card {
     textSize(25);    
     fill(0);
     textAlign(CENTER, TOP);
+    //suit display
     if(suit == 0){
       text("O",(x1+x2)/2,y1+2);
     } else if(suit ==1){
@@ -43,9 +48,12 @@ class Card {
     } else{
       text("△",(x1+x2)/2,y1+2);
     }
+    // number display
     text(face, (x1+x2)/2, (y1+y2)/2);
     
+    // when its not clicked
     } else {
+      // red vs white
       if(red == true) {
       fill(231, 50, 19);
     } else {
@@ -55,6 +63,7 @@ class Card {
     textSize(25);
     fill(0);
     textAlign(CENTER, TOP);
+    // suit display
     if(suit == 0){
       text("O",(x1+x2)/2,y1+2);
     } else if(suit ==1){
@@ -64,6 +73,7 @@ class Card {
     } else{
       text("△",(x1+x2)/2,y1+2);
     }
+    // number display
     text(face, (x1+x2)/2, (y1+y2)/2);
     }
    }
