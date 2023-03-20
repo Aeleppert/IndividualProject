@@ -16,6 +16,6 @@ Executables available for
 [MacOSX](https://github.com/Aeleppert/IndividualProject/blob/main/exe/application.macosx.zip)
 
   
-Documentation Here (Now Outdated):  
+Documentation Here:  
 ![Placeholder Image](https://github.com/Aeleppert/IndividualProject/blob/main/images/Updated%20flowchart.drawio.png)
 ![Placeholder Image](https://github.com/Aeleppert/IndividualProject/blob/main/images/Updated%20class.drawio.png)
