@@ -3,6 +3,7 @@ import java.util.*;
 Stack<Card> deck = new Stack<Card>();
 boolean menu = true;
 boolean gone = false;
+boolean boo = false;
 Card top,dcard, mcard;
 int o,n, something;
 int b = -1;
@@ -134,6 +135,12 @@ void mouseClicked() {
     deck.clear();
     grid.clear();
   } else if(!menu && mouseX>20 && mouseX<70 && mouseY<280 && mouseY>220) {
+    if(boo == true){
+      mcard.dis = false;
+      pull.add(mcard);
+      mcard = null;
+      boo = false;
+    }
     if (top != null) {
        top.dis = false;
     }
@@ -147,12 +154,10 @@ void mouseClicked() {
         pull.get(i).x2 = 70;
         pull.get(i).y2 = 280;
       }
-      
+      pull.clear();
     }
-    
     top = deck.pop();
     pull.add(top);
-    System.out.println(pull.size());
     top.y1 = 100;
     top.y2 = 160;
     top.x1 = 30;
@@ -184,7 +189,11 @@ void mouseClicked() {
       dcard = grid.get(i).get(grid.get(i).size()-1);
       }
     } else {
+      if(grid.get(i).size() == 0){
+        mcard = null;
+      } else{
       mcard = grid.get(i).get(grid.get(i).size()-1);
+      }
     }
   }
   }
@@ -193,8 +202,8 @@ void mouseClicked() {
       mcard = top;
       top = null;
       mcard.click = true;
+      boo = true;
       pull.remove(pull.size()-1);
-      System.out.println(pull);
   }// can;t unselect top card
   
   if(dcard!=null && mcard!=null && dcard.equals(mcard)){
@@ -207,6 +216,10 @@ void mouseClicked() {
     mcard.x2 = dcard.x2;
     mcard.y1 = dcard.y1;
     mcard.y2 = dcard.y2;
+    if(pull.size() >0){
+      pull.get(pull.size()-1).dis = true;
+      top = pull.get(pull.size()-1);
+    }
     for(int i=0;i<12;i++){
       if (grid.get(i).indexOf(mcard)!= -1) {
       grid.get(i).remove(grid.get(i).indexOf(mcard));
@@ -221,8 +234,6 @@ void mouseClicked() {
       
     }
     grid.get(o).add(n+1,mcard);
-    //System.out.println(dcard);
-    System.out.println(grid);
     for(int i=0;i<12;i++){
     if(grid.get(i).size() != 0){
       for(Card j: grid.get(i)){
@@ -235,12 +246,11 @@ void mouseClicked() {
     dcard.click = false;
     mcard = null;
     dcard = null;
+    boo = false;
   }
-  
-  
 }
 
-int score() {
+int score(){
   int points = 0;
   String [][] face = {{"2","6","10"},{"2","6","10"},{"2","6","10"},{"3","7","J"},{"3","7","J"},{"3","7","J"},
       {"4","8","Q"},{"4","8","Q"},{"4","8","Q"},{"5","9","K"},{"5","9","K"},{"5","9","K"}};
