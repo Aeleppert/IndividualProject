@@ -70,7 +70,9 @@ void setup(){
 
 void draw(){
   if (menu) {
-    for (Card i: arr){
+    // menu screen
+    // unclick cards
+    for (Card i: arr){ 
       i.click = false;
     }
     background(0);
@@ -81,7 +83,8 @@ void draw(){
     textSize(15);
     text("Card Game | Alice Leppert | 2023", 350,475);
     text("NEW GAME", 350,300);
-  } else {
+  } else { 
+    // game screen
     background(157, 190, 183, 1);
     textSize(20);
     text("Score: "+ score(),250,20);
@@ -108,14 +111,16 @@ void draw(){
       i.display();
     }
   }
-  if(score() == 1800){
+  // win screen
+  if(score() == 1800){ 
     textSize(20);
     text("YOU WIN!", 220, 250);
   }
 }
 
 void mouseClicked() {
-  if (menu && mouseX>260 && mouseX>330 && mouseY<310 && mouseY>290) {
+//click on new game. randomizes and sets cards
+  if (menu && mouseX>260 && mouseX>330 && mouseY<310 && mouseY>290) { 
     menu = false;
     List<Card> list = Arrays.asList(arr);
     Collections.shuffle(list);
@@ -138,22 +143,26 @@ void mouseClicked() {
       grid.get(i).add(0,setup);
     }
     
-    
-  } else if(!menu && mouseX<290 && mouseX>210 && mouseY<470 && mouseY>430) {
+    // click on main menu
+  } else if(!menu && mouseX<290 && mouseX>210 && mouseY<470 && mouseY>430) { 
     menu = true;
     deck.clear();
     grid.clear();
-  } else if(!menu && mouseX>20 && mouseX<70 && mouseY<280 && mouseY>220) {
+    // click on deck
+  } else if(!menu && mouseX>20 && mouseX<70 && mouseY<280 && mouseY>220) { 
+    // fix for top card selected when deck is clicked
     if(boo == true){
       mcard.dis = false;
       pull.add(mcard);
       mcard = null;
       boo = false;
     }
+    // make new top card on top
     if (top != null) {
        top.dis = false;
     }
-    if(deck.size() == 0){
+    // reset deck after it was pulled out
+    if(deck.size() == 0){ 
       
       for(int i=pull.size()-1;i>=0;i--){
         deck.push(pull.get(i));
@@ -165,20 +174,22 @@ void mouseClicked() {
       }
       pull.clear();
     }
-    top = deck.pop();
+    // get top card and move it
+    top = deck.pop(); 
     pull.add(top);
     top.y1 = 100;
     top.y2 = 160;
     top.x1 = 30;
     top.x2 = 70;
     top.click = false;
-    for (Card c: arr) {
+    // so clicked cards dont get pulled somewhere
+    for (Card c: arr) { 
     c.click = false;
   }
   }
   
-  //
-  for (int i = 0; i<12;i++){
+  // find which card user clicks on and select it
+  for (int i = 0; i<12;i++){ 
   if(mouseX>place[i][0] && mouseY>place[i][1] && mouseX<place[i][2] && mouseY<place[i][3]) {
     if(grid.get(i).size() == 0 ){
       fill(75, 120, 150);
@@ -186,7 +197,9 @@ void mouseClicked() {
     } else {
       grid.get(i).get(grid.get(i).size()-1).click = true;
     }
+    // if its the second card that has been clicked make it the destination card
     if(mcard != null){
+      // if there is no card. set hold card to new destination points
       if(grid.get(i).size() == 0 ){
         dcard = hold;
         something = i;
@@ -195,54 +208,69 @@ void mouseClicked() {
         dcard.x2 = place[i][2];
         dcard.y2 = place[i][3];
       } else{
+      // if its the second card getting clicked on it becomes the destination card
       dcard = grid.get(i).get(grid.get(i).size()-1);
       }
     } else {
+      // if first card clicked make it mcard.
+      // a fix if cards are clicked out of order i think
       if(grid.get(i).size() == 0){
         mcard = null;
       } else{
+      // otherwise make it the move card
       mcard = grid.get(i).get(grid.get(i).size()-1);
       }
     }
   }
   }
   
+  // when top card is clicked it becomes the moving card.
   if(top != null && mouseX>top.x1 && mouseY>top.y1 && mouseX<top.x2 && mouseY<top.y2) {
       mcard = top;
       top = null;
       mcard.click = true;
+      // a fix for click order
       boo = true;
       pull.remove(pull.size()-1);
-  }// can;t unselect top card
+  }// cant technically unselect top card by clicking it again
   
+  // unselect a card
   if(dcard!=null && mcard!=null && dcard.equals(mcard)){
       mcard.click = false;
       dcard.click = false;
       mcard = null;
       dcard = null;
+    // when two cards are clicked
     }else if (dcard!=null && mcard!=null) {
+    // move card GUI
     mcard.x1 = dcard.x1;
     mcard.x2 = dcard.x2;
     mcard.y1 = dcard.y1;
     mcard.y2 = dcard.y2;
+    // if the top card is moved the past card is revealed
     if(pull.size() >0){
       pull.get(pull.size()-1).dis = true;
       top = pull.get(pull.size()-1);
     }
     for(int i=0;i<12;i++){
+      // get rid of moved card from 2d arr
       if (grid.get(i).indexOf(mcard)!= -1) {
       grid.get(i).remove(grid.get(i).indexOf(mcard));
       }
+      // get destination of destination card
       if (grid.get(i).indexOf(dcard)!= -1) {
         o = i;
         n = grid.get(i).indexOf(dcard);
+      // get destination when destination is the blank card
       } else if (dcard.equals( hold)){
         o = something;
         n = -1;
       }
       
     }
+    // add the moved card in 2d arr
     grid.get(o).add(n+1,mcard);
+    // show only the top card from each stack
     for(int i=0;i<12;i++){
     if(grid.get(i).size() != 0){
       for(Card j: grid.get(i)){
@@ -251,6 +279,7 @@ void mouseClicked() {
       grid.get(i).get(grid.get(i).size()-1).dis = true;
       }
     }
+    // reset var
     mcard.click = false;
     dcard.click = false;
     mcard = null;
@@ -259,19 +288,23 @@ void mouseClicked() {
   }
 }
 
+// scoring
 int score(){
   int points = 0;
   String [][] face = {{"2","6","10"},{"2","6","10"},{"2","6","10"},{"3","7","J"},{"3","7","J"},{"3","7","J"},
       {"4","8","Q"},{"4","8","Q"},{"4","8","Q"},{"5","9","K"},{"5","9","K"},{"5","9","K"}};
   for(ArrayList<Card> i: grid){
     for(Card j:i){
+      // points awarded for card val
       points += j.pt;
+      // points awarded for order of faces
       if (grid.get(grid.indexOf(i)).indexOf(j)<3){
       if (j.face.equals(face[grid.indexOf(i)][grid.get(grid.indexOf(i)).indexOf(j)])){
         points+= 10;
       }
     }
     } 
+    // points awarded for all same suit in one stack
     if(grid.get(grid.indexOf(i)).size() == 4){
     if(grid.get(grid.indexOf(i)).get(0) == grid.get(grid.indexOf(i)).get(1) && grid.get(grid.indexOf(i)).get(0) == grid.get(grid.indexOf(i)).get(2) 
           && grid.get(grid.indexOf(i)).get(0) == grid.get(grid.indexOf(i)).get(3)){
